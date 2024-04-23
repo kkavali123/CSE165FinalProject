@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-// 4/21 Amrita - accessor/mutators + properly destroy all memory + any initlaization stuff that i did wrong 
+// 4/21 Amrita - accessor/mutators 
 
 //getter/setter methods are accessors/mutators - ADD LATER after discussing in 4/23 meeting tomorrow
 
@@ -93,14 +93,15 @@ void ToDo::displayAll(){
 
 }
 
-void ToDo::addTask(){  //maybe add extra if statements for certain months/years for valid dates? check comments below (DISCUSS)
+void ToDo::addTask() {
     if(counter > 9){
-        cout << "Task's are all full!" << endl;
+        cout << "Tasks are all full!" << endl;
     }
-    else{
+    else {
         string newTask;
         int day, month, year;
-        cout << "Enter the task: " <<endl;
+        cout << "Enter the task: " << endl;
+        cin.ignore(); 
         getline(cin, newTask);
         cout << "Enter the month: " << endl;
         cin >> month;
@@ -108,8 +109,8 @@ void ToDo::addTask(){  //maybe add extra if statements for certain months/years 
             cout << "Number not valid. Enter a valid number, please." << endl;
             return;
         }
-        cout << "Enter the day: " << endl;  //add option later to see that for certain months, certain numbers can't be used (ex. Feb, April)
-        cin >> day;         //think about leap year for February? (i.e. having the ability to only add 29 when it is a leap year? - discuss later)
+        cout << "Enter the day: " << endl; 
+        cin >> day; 
         if(day > 31 || day < 1){
             cout << "Number not valid. Enter a valid number, please." << endl;
             return;
@@ -121,11 +122,25 @@ void ToDo::addTask(){  //maybe add extra if statements for certain months/years 
             return;
         }
 
+        if(month == 2 && day > 29){
+            cout << "Not a valid date." << endl;
+            return;
+        }
+        else if((month == 2) && (day == 29) && ((year % 4 != 0) || (year % 100 == 0 && year % 400 != 0))) { 
+            cout << "Not a valid date." << endl;
+            return;
+        }
+
+        if((month == 4 || month == 6 || month == 9 || month == 11) && day > 30){
+            cout << "Not a valid date." << endl;
+            return;
+        }
+
         task[counter] = Date(day, month, year, newTask);
         counter++;
-        
     }
 }
+
 
 void ToDo::deleteTask(){  //maybe add another aspect where you can delete multiple tasks in one command? (discuss tomorrow)     
     int deleteNumber = 0;
