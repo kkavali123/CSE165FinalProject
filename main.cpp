@@ -1,9 +1,8 @@
 #include <iostream>
 using namespace std;
 
-// 4/21 Amrita - accessor/mutators 
 
-//getter/setter methods are accessors/mutators - ADD LATER after discussing in 4/23 meeting tomorrow
+//add comments in each section just in case for q/a section of demo
 
 class Date {
     string task;
@@ -12,9 +11,13 @@ public:
     Date() : day(0), month(0), year(0) {}
     Date(int d, int m, int y, const string& t) : day(d), month(m), year(y), task(t) {}
     string getTask() const { return task; }
+    void setTask(const string& t) { task = t; }
     int getDay() const { return day; }
-    int getMonth() const { return month; }
+    void setDay(int d) { day = d; }
+    int getMonth() const { return month; }  //ask tomorrow if anything else is needed for getter/setter methods (need to add more?)
+    void setMonth(int m) { month = m; }
     int getYear() const { return year; }
+    void setYear(int y) { year = y; }
     ~Date() {} 
 };
 class ToDo {
@@ -157,7 +160,6 @@ void ToDo::deleteTask(){  //maybe add another aspect where you can delete multip
 }
 
 
-
 bool compareAscending(const Date& date1, const Date& date2) { 
     if (date1.getYear() != date2.getYear())
         return date1.getYear() > date2.getYear(); 
@@ -166,7 +168,8 @@ bool compareAscending(const Date& date1, const Date& date2) {
     return date1.getDay() > date2.getDay(); 
 }
 
-void ToDo::sortTasksAscending() {
+void ToDo::sortTasksAscending() {   
+    cout << "Sorting tasks in ascending order..." << endl;
     for(int i = 1; i < counter; ++i) {
         for(int j = 1; j < counter - i; ++j) {
             if(compareAscending(task[j], task[j + 1])) {
@@ -184,7 +187,8 @@ bool compareDescending(const Date& date1, const Date& date2) {
     return date1.getDay() < date2.getDay(); 
 }
 
-void ToDo::sortTasksDescending(){
+void ToDo::sortTasksDescending(){   
+    cout << "Sorting tasks in descending order..." << endl;
     for(int i = 1; i < counter; ++i) {
         for(int j = 1; j < counter - i; ++j) {
             if(compareDescending(task[j], task[j + 1])) {
@@ -194,12 +198,18 @@ void ToDo::sortTasksDescending(){
     }
 }
 
-void ToDo::filterTask(){
+void ToDo::filterTask(){  //also cuts of first letter here (need to fix)
     int month, year;
     cout << "Enter the month you want to filter by: " << endl;
     cin >> month;
+    if(month > 12 || month < 1){
+        cout << "Enter a valid number, please." << endl;
+    }
     cout << "Enter the year you want to filter by: " << endl;
     cin >> year;
+    if(year < 1){
+        cout << "Enter a valid number, please." << endl;
+    }
     showBy(month, year);
 }
 
@@ -208,3 +218,5 @@ int main(){
     obj.options();
     return 0;
 }
+
+// redownload Qt
