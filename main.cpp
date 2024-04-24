@@ -1,8 +1,43 @@
 #include <iostream>
 using namespace std;
 
+// Keerthi
+// to do list requirements
+// be able to add a task
+// delete a task
+// display all tasks
+// display options
+// another class called deadlines where you can put important dates
+// sort deadline by priority????
 
-//add comments in each section just in case for q/a section of demo
+// April 20 Keerthi - add another class Amrita - some kind of algorithm implementation
+// April 21 Keerthi - inheritcance/polymorphism and deriving objects from the abstract class + upcasting
+
+// potentially a seperate date class
+// now use a sorting algorithm to sort the display based on due date (Amrita)
+// gives the dates a restriction
+
+
+// 4/21 Amrita - destructor for date class + accessor/mutators + properly destroy all memory + any initlaization stuff that i did wrong 
+// sort by deadlines, with earliest deadlines being first
+// invalid options in the to do list + invalid options for dates
+// optional Amrita - sort by farthest away deadline
+// 4/21 Keerthi - include polymmorphism/inheritance of some kind + abstract class + upcasting
+
+// 4/21 Amrita - accessor/mutators 
+
+//getter/setter methods are accessors/mutators - ADD LATER after discussing in 4/23 meeting tomorrow
+
+// 4/23: 
+// not printing the first letter of the task
+// deleting is deleting -1
+// print tasks in ascedning/descednign
+
+// extras: month/year constraint on action item
+// Keerthi: include polymmorphism/inheritance of some kind + abstract class + upcasting
+// Amrita: acessor/mutators/add cout statements for ascending/descedning tasks + 6th option filtering month and year (making sure they don't type month 15 of year -1)
+
+// now it's deleting properly but not printing properly(fixed)
 
 class Date {
     string task;
@@ -63,7 +98,6 @@ void ToDo::options() {
         cout << "PRESS 0 TO EXIT OUT OF PROGRAM" << endl;
         cout << "--------------------------" << endl;
         cin >> option;
-        cin.ignore(); 
         switch(option) {
             case 1:
                 addTask();
@@ -219,4 +253,3 @@ int main(){
     return 0;
 }
 
-// redownload Qt
