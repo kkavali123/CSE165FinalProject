@@ -1,43 +1,13 @@
 #include <iostream>
 using namespace std;
 
-// Keerthi
-// to do list requirements
-// be able to add a task
-// delete a task
-// display all tasks
-// display options
-// another class called deadlines where you can put important dates
-// sort deadline by priority????
+// notes + IMPORTANT
+// getter/setter method in the Date class but dont know if should be used elsewhere
+// ascending/descending function needs to print immediatly 
 
-// April 20 Keerthi - add another class Amrita - some kind of algorithm implementation
-// April 21 Keerthi - inheritcance/polymorphism and deriving objects from the abstract class + upcasting
-
-// potentially a seperate date class
-// now use a sorting algorithm to sort the display based on due date (Amrita)
-// gives the dates a restriction
-
-
-// 4/21 Amrita - destructor for date class + accessor/mutators + properly destroy all memory + any initlaization stuff that i did wrong 
-// sort by deadlines, with earliest deadlines being first
-// invalid options in the to do list + invalid options for dates
-// optional Amrita - sort by farthest away deadline
-// 4/21 Keerthi - include polymmorphism/inheritance of some kind + abstract class + upcasting
-
-// 4/21 Amrita - accessor/mutators 
-
-//getter/setter methods are accessors/mutators - ADD LATER after discussing in 4/23 meeting tomorrow
-
-// 4/23: 
-// not printing the first letter of the task
-// deleting is deleting -1
-// print tasks in ascedning/descednign
-
-// extras: month/year constraint on action item
-// Keerthi: include polymmorphism/inheritance of some kind + abstract class + upcasting
-// Amrita: acessor/mutators/add cout statements for ascending/descedning tasks + 6th option filtering month and year (making sure they don't type month 15 of year -1)
-
-// now it's deleting properly but not printing properly(fixed)
+// STILL HAVE TO DO:
+// K - inheritance, abstract class, upcasting
+// A - polymorphism
 
 class Date {
     string task;
