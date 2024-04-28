@@ -3,14 +3,9 @@
 #include <string>
 using namespace std;
 
-// notes + IMPORTANT
 // getter/setter method in the Date class but dont know if should be used elsewhere
 // ascending/descending function needs to print immediatly 
 
-// STILL HAVE TO DO:
-// K - inheritance, abstract class, upcasting
-// A - polymorphism
-// looking into QT + having some code ready
 
 class Task{
 public:
@@ -21,7 +16,7 @@ public:
 // contains at least one pure virtual function (=0)
 // can create an array of objects to save space 
 
-class Date : public Task {
+class Date : public Task { 
     string task;
     int day, month, year;
 public: 
@@ -38,7 +33,7 @@ public:
     void display(int taskNumber) const override {
         cout << "Task " << taskNumber << ": " << task << "(Due: " << month << "/" << day << "/" << year << ")" << endl;
     }
-    // ~Date() {} 
+    ~Date() {} 
 };
 
 class ToDo : public Task{
@@ -234,6 +229,7 @@ void ToDo::sortTasksAscending() {
             }
         }
     }
+    display(1);
 }
 
 bool compareDescending(const Task* task1, const Task* task2){
@@ -250,6 +246,7 @@ bool compareDescending(const Task* task1, const Task* task2){
         return false;
     }
 }
+
 void ToDo::sortTasksDescending(){   
     cout << "Sorting tasks in descending order..." << endl;
     int n = tasks.size();
@@ -262,9 +259,10 @@ void ToDo::sortTasksDescending(){
             }
         }
     }
+    display(1);
 }
 
-void ToDo::filterTask(){  //also cuts of first letter here (need to fix)
+void ToDo::filterTask(){  
     int month, year;
     cout << "Enter the month you want to filter by: " << endl;
     cin >> month;
@@ -300,4 +298,3 @@ int main(){
     obj.options();
     return 0;
 }
-
