@@ -8,4 +8,4 @@ int main(int argc, char *argv[]) {
     return app.exec();
 }
 
-//main.cpp for project 3 Qt
+

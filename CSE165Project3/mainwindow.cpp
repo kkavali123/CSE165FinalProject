@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include <QDebug>
-#include <QMessageBox> // Include QMessageBox header
 
 void Date::display(int taskNumber) const {
     qDebug() << "Task" << taskNumber << ":" << QString::fromStdString(task) << "(Due:" << month << "/" << day << "/" << year << ")";
@@ -86,38 +85,12 @@ void MainWindow::deleteTask() {
 }
 
 void MainWindow::sortTasksAscending() {
-    std::sort(tasks.begin(), tasks.end(), [](const Task* a, const Task* b) {
-        const Date* date1 = dynamic_cast<const Date*>(a);
-        const Date* date2 = dynamic_cast<const Date*>(b);
-        if (date1 && date2) {
-            if (date1->getYear() != date2->getYear()) {
-                return date1->getYear() < date2->getYear();
-            }
-            if (date1->getMonth() != date2->getMonth()) {
-                return date1->getMonth() < date2->getMonth();
-            }
-            return date1->getDay() < date2->getDay();
-        }
-        return false;
-    });
+    bubbleSortAscending();
     displayTasks();
 }
 
 void MainWindow::sortTasksDescending() {
-    std::sort(tasks.begin(), tasks.end(), [](const Task* a, const Task* b) {
-        const Date* date1 = dynamic_cast<const Date*>(a);
-        const Date* date2 = dynamic_cast<const Date*>(b);
-        if (date1 && date2) {
-            if (date1->getYear() != date2->getYear()) {
-                return date1->getYear() > date2->getYear();
-            }
-            if (date1->getMonth() != date2->getMonth()) {
-                return date1->getMonth() > date2->getMonth();
-            }
-            return date1->getDay() > date2->getDay();
-        }
-        return false;
-    });
+    bubbleSortDescending();
     displayTasks();
 }
 
@@ -148,6 +121,52 @@ void MainWindow::displayTasks() {
         if (dateTask) {
             QListWidgetItem *item = new QListWidgetItem(QString("Task %1: %2 (Due: %3/%4/%5)").arg(taskNumber++).arg(QString::fromStdString(dateTask->getTask())).arg(dateTask->getMonth()).arg(dateTask->getDay()).arg(dateTask->getYear()));
             taskList->addItem(item);
+        }
+    }
+}
+
+void MainWindow::bubbleSortAscending() {
+    int n = tasks.size();
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            const Date* date1 = dynamic_cast<const Date*>(tasks[j]);
+            const Date* date2 = dynamic_cast<const Date*>(tasks[j + 1]);
+            if (date1 && date2) {
+                if (date1->getYear() != date2->getYear()) {
+                    if (date1->getYear() > date2->getYear()) {
+                        std::swap(tasks[j], tasks[j + 1]);
+                    }
+                } else if (date1->getMonth() != date2->getMonth()) {
+                    if (date1->getMonth() > date2->getMonth()) {
+                        std::swap(tasks[j], tasks[j + 1]);
+                    }
+                } else if (date1->getDay() > date2->getDay()) {
+                    std::swap(tasks[j], tasks[j + 1]);
+                }
+            }
+        }
+    }
+}
+
+void MainWindow::bubbleSortDescending() {
+    int n = tasks.size();
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - i - 1; ++j) {
+            const Date* date1 = dynamic_cast<const Date*>(tasks[j]);
+            const Date* date2 = dynamic_cast<const Date*>(tasks[j + 1]);
+            if (date1 && date2) {
+                if (date1->getYear() != date2->getYear()) {
+                    if (date1->getYear() < date2->getYear()) {
+                        std::swap(tasks[j], tasks[j + 1]);
+                    }
+                } else if (date1->getMonth() != date2->getMonth()) {
+                    if (date1->getMonth() < date2->getMonth()) {
+                        std::swap(tasks[j], tasks[j + 1]);
+                    }
+                } else if (date1->getDay() < date2->getDay()) {
+                    std::swap(tasks[j], tasks[j + 1]);
+                }
+            }
         }
     }
 }
