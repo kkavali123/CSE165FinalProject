@@ -42,26 +42,22 @@ void MainWindow::addTask() {
         bool ok;
         int day, month, year;
 
-        // Get the day
-        day = QInputDialog::getInt(this, "Add Task", "Enter the day:", 1, 1, 31, 1, &ok);
-        if (!ok) return;
-
-        // Get the month
         month = QInputDialog::getInt(this, "Add Task", "Enter the month:", 1, 1, 12, 1, &ok);
         if (!ok) return;
 
-        // Get the year
+        day = QInputDialog::getInt(this, "Add Task", "Enter the day:", 1, 1, 31, 1, &ok);
+        if (!ok) return;
+
         year = QInputDialog::getInt(this, "Add Task", "Enter the year:", 2024, 0, 9999, 1, &ok);
         if (!ok) return;
 
-        // Check if the day is valid for the selected month
         if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
-            QMessageBox::critical(this, "Error", "Invalid day for the selected month!");
+            QMessageBox::critical(this, "Error", "Invalid day for the selected month. Please try again.");
             return;
         } else if (month == 2) {
             bool isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
             if (!isLeapYear && day > 28) {
-                QMessageBox::critical(this, "Error", "Invalid date for February!");
+                QMessageBox::critical(this, "Error", "Invalid date for February. Please try again.");
                 return;
             } else if (day > 29) {
                 QMessageBox::critical(this, "Error", "Invalid date. Please try again.");
@@ -69,7 +65,6 @@ void MainWindow::addTask() {
             }
         }
 
-        // Add the task
         tasks.push_back(new Date(day, month, year, newTask.toStdString()));
         displayTasks();
     }
@@ -85,12 +80,12 @@ void MainWindow::deleteTask() {
 }
 
 void MainWindow::sortTasksAscending() {
-    bubbleSortAscending();
+    compareAscending();
     displayTasks();
 }
 
 void MainWindow::sortTasksDescending() {
-    bubbleSortDescending();
+    compareDescending();
     displayTasks();
 }
 
@@ -125,7 +120,7 @@ void MainWindow::displayTasks() {
     }
 }
 
-void MainWindow::bubbleSortAscending() {
+void MainWindow::compareAscending() {
     int n = tasks.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {
@@ -148,7 +143,7 @@ void MainWindow::bubbleSortAscending() {
     }
 }
 
-void MainWindow::bubbleSortDescending() {
+void MainWindow::compareDescending() {
     int n = tasks.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {

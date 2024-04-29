@@ -53,8 +53,8 @@ private slots:
 
 private:
     void displayTasks();
-    void bubbleSortAscending();
-    void bubbleSortDescending();
+    void compareAscending();
+    void compareDescending();
 
     QVBoxLayout *mainLayout;
     QListWidget *taskList;
@@ -67,4 +67,4 @@ private:
     std::vector<Task*> tasks;
 };
 
-#endif // MAINWINDOW_H
+#endif
