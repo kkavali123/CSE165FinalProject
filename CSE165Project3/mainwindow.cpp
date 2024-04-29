@@ -120,7 +120,7 @@ void MainWindow::displayTasks() {
     }
 }
 
-void MainWindow::compareAscending() {
+void MainWindow::compareAscending() { //bubble sort
     int n = tasks.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {
@@ -143,7 +143,7 @@ void MainWindow::compareAscending() {
     }
 }
 
-void MainWindow::compareDescending() {
+void MainWindow::compareDescending() {  //bubble sort
     int n = tasks.size();
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - i - 1; ++j) {
